@@ -638,7 +638,9 @@ function conectar() {
   document.querySelector('.brand-footer').style.display = 'none';
   document.getElementById('successScreen').style.display = 'block';
   setTimeout(() => {
-    // Para Omada reemplazar con: window.location.href = '$(portalUrl)';
+    const params = new URLSearchParams(window.location.search);
+    const redirectUrl = params.get('redirectUrl');
+    if (redirectUrl) { window.location.href = redirectUrl; }
   }, 3000);
 }
 </script>
