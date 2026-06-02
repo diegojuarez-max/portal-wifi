@@ -637,10 +637,18 @@ function conectar() {
   document.querySelector('.footer').style.display       = 'none';
   document.querySelector('.brand-footer').style.display = 'none';
   document.getElementById('successScreen').style.display = 'block';
+const params      = new URLSearchParams(window.location.search);
+  const clientMac   = params.get('clientMac') || '';
+  const t           = params.get('t') || '';
+  const site        = params.get('site') || '';
+  const redirectUrl = params.get('redirectUrl') || 'http://elipgo.com';
+  const authUrl = 'https://use1-omada-controller.tplinkcloud.com/portal/login?'
+    + 'clientMac=' + encodeURIComponent(clientMac)
+    + '&t=' + t
+    + '&site=' + site
+    + '&redirectUrl=' + encodeURIComponent(redirectUrl);
   setTimeout(() => {
-    const params = new URLSearchParams(window.location.search);
-    const redirectUrl = params.get('redirectUrl');
-    if (redirectUrl) { window.location.href = redirectUrl; }
+    window.location.href = authUrl;
   }, 3000);
 }
 </script>
